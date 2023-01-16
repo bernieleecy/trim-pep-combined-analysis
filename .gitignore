@@ -1,0 +1,7 @@
+.DS_Store
+runs/*
+.snakemake/*
+*.pse
+*.pdb
+*.dat
+*.xtc

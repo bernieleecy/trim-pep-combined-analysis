@@ -1,0 +1,27 @@
+import pandas as pd
+
+
+configfile: "config/config.yaml"
+
+
+samples = pd.read_csv("config/samples.csv", index_col=["protein", "folder"])
+PROTEINS = samples.index.unique(level="protein").tolist()
+FOLDERS = samples.index.unique(level="folder").tolist()
+
+# cis K18Ac, trans K18Ac and cis + trans K18Ac compared against unmod
+plip_types = ["cis", "trans", "all"]
+
+
+# Load rules
+include: "rules/plip_combine.smk"
+
+
+rule all:
+    input:
+        plip_k18_k18ac_plots=[
+            f"combined_plots/plip/plip_k18_k18ac_{i}.png" for i in plip_types
+        ],
+        plip_k9_k9me3_plots=[
+            f"combined_plots/plip/plip_k9_k9me3_{i}.png" for i in plip_types
+        ],
+        plip_r17_plots=[f"combined_plots/plip/plip_r17_{i}.png" for i in plip_types],

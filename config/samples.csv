@@ -1,0 +1,16 @@
+protein,folder,peptide,k9_type,k18_type,mutations
+t24,apo,no,NA,NA,WT
+t24,mod_pep,yes,K9Me3,K18Ac,WT
+t24,mod_pep_trans,yes,K9Me3,K18Ac,WT
+t24,unmod_pep,yes,K9,K18,WT
+t24,n980a,yes,K9Me3,K18Ac,N980A
+t33a,apo,no,NA,NA,WT
+t33a,mod_pep,yes,K9Me3,K18Ac,WT
+t33a,mod_pep_trans,yes,K9Me3,K18Ac,WT
+t33a,unmod_pep,yes,K9,K18,WT
+t33a,n1039a,yes,K9Me3,K18Ac,N1039A
+t33b,apo,no,NA,NA,WT
+t33b,mod_pep,yes,K9Me3,K18Ac,WT
+t33b,mod_pep_trans,yes,K9Me3,K18Ac,WT
+t33b,unmod_pep,yes,K9,K18,WT
+t33b,n1039a,yes,K9Me3,K18Ac,N1039A
