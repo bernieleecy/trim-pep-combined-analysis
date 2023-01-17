@@ -7,6 +7,7 @@ sns.set_style("ticks")
 sns.set_palette("colorblind")
 plt.style.use(snakemake.config["mpl_style"])
 
+
 def make_df(file, label, start_res=1, end_res=20):
     """For making a DataFrame of PLIP hydrophilic and hydrophobic contacts
 

@@ -14,14 +14,29 @@ plip_types = ["cis", "trans", "all"]
 
 # Load rules
 include: "rules/plip_hh.smk"
+include: "rules/plip_type_breakdown.smk"
 
 
 rule all:
     input:
-        plip_k18_k18ac_plots=[
+        plip_k18_hh_plots=[
             f"combined_plots/plip_hh/plip_k18_k18ac_{i}.png" for i in plip_types
         ],
-        plip_k9_k9me3_plots=[
+        plip_k9_hh_plots=[
             f"combined_plots/plip_hh/plip_k9_k9me3_{i}.png" for i in plip_types
         ],
-        plip_r17_plots=[f"combined_plots/plip_hh/plip_r17_{i}.png" for i in plip_types],
+        plip_r17_hh_plots=[
+            f"combined_plots/plip_hh/plip_r17_{i}.png" for i in plip_types
+        ],
+        plip_k18_breakdown_plots=[
+            f"combined_plots/plip_breakdown/plip_k18_k18ac_{i}_breakdown.png"
+            for i in plip_types
+        ],
+        plip_k9_breakdown_plots=[
+            f"combined_plots/plip_breakdown/plip_k9_k9me3_{i}_breakdown.png"
+            for i in plip_types
+        ],
+        plip_r17_breakdown_plots=[
+            f"combined_plots/plip_breakdown/plip_r17_{i}_breakdown.png"
+            for i in plip_types
+        ],

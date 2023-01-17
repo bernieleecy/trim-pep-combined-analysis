@@ -8,76 +8,80 @@ sns.set_palette("colorblind")
 plt.style.use(snakemake.config["mpl_style"])
 
 
-def make_df(file, label, start_res=1, end_res=20):
-    """For making a DataFrame of PLIP hydrophilic and hydrophobic contacts
+def make_df_breakdown(file, label):
+    """For making a DataFrame of PLIP breakdown data
 
-    Reads my PLIP hydrophilic and hydrophobic contacts breakdown and processes the data
-    for specified residues. Supply the residue numbers as is, do not correct for
-    python's zero indexing.
+    Reads my PLIP full breakdown file and returns a dataframe grouped by peptide_number
+    and type. Reads sheet 2 (sheet_name=1) and skips column 0.
 
     Args:
         file (str): Path to excel sheet containing PLIP data.
         label (str): Protein label.
-        start_res (int): First residue of the peptide. Defaults to 1.
-        end_res (int): Last residue of the peptide. Defaults to 20.
 
     Returns:
-        DataFrame: DataFrame containing per-residue hydrophilic-hydrophobic contact
-        data.
+        DataFrame: DataFrame containing per-residue interactions by interaction type.
     """
-    df = pd.read_excel(file, sheet_name=0, index_col=0)
+
+    df = pd.read_excel(file, sheet_name=1, usecols=[1, 2, 3, 4, 5], index_col=0)
     df.fillna(value=0, inplace=True)
     df.reset_index(inplace=True)
     df["Peptide_number"].astype("int")
 
-    # minus one from start_res to handle the zero indexing
-    df = df.iloc[start_res - 1 : end_res]
-    melt_df = pd.melt(
-        df,
-        id_vars=["Peptide_number"],
-        value_vars=["Hydrophobic", "Hydrophilic"],
-        var_name="Contact type",
-    )
-    melt_df["Protein"] = label
-    return melt_df
+    grouped_df = df.groupby(by=["Peptide_number", "Type"]).sum()
+    grouped_df["Protein"] = label
+
+    return grouped_df
 
 
 f1 = snakemake.input.files_1
 f2 = snakemake.input.files_2
+f3 = snakemake.input.files_3
 resi_types = snakemake.params.types
 labels = snakemake.params.protein_labels
 
 all_df = pd.DataFrame()
 
 # requires python 3.10 to use strict
-for i, files in enumerate([f1, f2]):
+for i, files in enumerate([f1, f2, f3]):
     type = resi_types[i]
 
     for file, label in zip(files, labels, strict=True):
-        df = make_df(file, label=label, start_res=1, end_res=20)
-        df["Type"] = type
+        df = make_df_breakdown(file, label=label)
+        df["Run type"] = type
         all_df = pd.concat([all_df, df])
 
+# restore Peptide_number and Type as columns
+all_df.reset_index(inplace=True)
+
+hue_order = [
+    "hydrogen_bonds",
+    "salt_bridges",
+    "pi_cation_interactions",
+    "hydrophobic_interactions",
+]
 peptide_resid = int(getattr(snakemake.params, "peptide_resid"))
 
 # catplot for interactions
 resi_plot = sns.catplot(
-    x="Type",
-    y="value",
-    hue="Contact type",
+    x="Run type",
+    y="size",
+    hue="Type",
     col="Protein",
     data=all_df[all_df["Peptide_number"] == peptide_resid],
     order=resi_types,
-    hue_order=["Hydrophilic", "Hydrophobic"],
+    hue_order=hue_order,
     kind="bar",
-    palette=["lightsteelblue", "thistle"],
+    ci=None,
     height=4.0,
     aspect=0.9,
     legend=False,
 )
 
 # legend on leftmost axes only
-resi_plot.fig.get_axes()[0].legend(loc="upper left", frameon=False, fontsize=11)
+leg_labels = ["Hydrogen bond", "Salt bridge", "Cation\u2013pi", "Hydrophobic"]
+resi_plot.fig.get_axes()[0].legend(
+    loc="upper left", frameon=False, fontsize=11, labels=leg_labels
+)
 
 ymin = int(getattr(snakemake.params, "ymin", 0))
 ymax = int(getattr(snakemake.params, "ymax", 1000))
