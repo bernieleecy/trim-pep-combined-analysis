@@ -15,6 +15,7 @@ plip_types = ["cis", "trans", "all"]
 # Load rules
 include: "rules/plip_hh.smk"
 include: "rules/plip_type_breakdown.smk"
+include: "rules/plip_hydrophobic.smk"
 
 
 rule all:
@@ -39,4 +40,8 @@ rule all:
         plip_r17_breakdown_plots=[
             f"combined_plots/plip_breakdown/plip_r17_{i}_breakdown.png"
             for i in plip_types
+        ],
+        plip_k18_hydrophobic=[
+            f"combined_plots/plip_hydrophobic/plip_k18ac_{i}_key_hydrophobic.png"
+            for i in ["cis", "trans"]
         ],
