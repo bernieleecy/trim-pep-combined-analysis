@@ -12,7 +12,7 @@ rule plot_plip_k18_k18ac_cis:
         files_1=unmod_files,
         files_2=mod_files,
     output:
-        "combined_plots/plip/plip_k18_k18ac_cis.png",
+        "combined_plots/plip_hh/plip_k18_k18ac_cis.png",
     params:
         peptide_resid=18,
         protein_labels=labels,
@@ -28,7 +28,7 @@ rule plot_plip_k18_k18ac_trans:
         files_1=unmod_files,
         files_2=mod_trans_files,
     output:
-        "combined_plots/plip/plip_k18_k18ac_trans.png",
+        "combined_plots/plip_hh/plip_k18_k18ac_trans.png",
     params:
         peptide_resid=18,
         protein_labels=labels,
@@ -45,7 +45,7 @@ rule plot_plip_k18_k18ac_all:
         files_2=mod_files,
         files_3=mod_trans_files,
     output:
-        "combined_plots/plip/plip_k18_k18ac_all.png",
+        "combined_plots/plip_hh/plip_k18_k18ac_all.png",
     params:
         peptide_resid=18,
         protein_labels=labels,
@@ -64,7 +64,7 @@ rule plot_plip_k9_k9me3_cis:
         files_1=unmod_files,
         files_2=mod_files,
     output:
-        "combined_plots/plip/plip_k9_k9me3_cis.png",
+        "combined_plots/plip_hh/plip_k9_k9me3_cis.png",
     params:
         peptide_resid=9,
         protein_labels=labels,
@@ -80,7 +80,7 @@ rule plot_plip_k9_k9me3_trans:
         files_1=unmod_files,
         files_2=mod_trans_files,
     output:
-        "combined_plots/plip/plip_k9_k9me3_trans.png",
+        "combined_plots/plip_hh/plip_k9_k9me3_trans.png",
     params:
         peptide_resid=9,
         protein_labels=labels,
@@ -97,7 +97,7 @@ rule plot_plip_k9_k9me3_all:
         files_2=mod_files,
         files_3=mod_trans_files,
     output:
-        "combined_plots/plip/plip_k9_k9me3_all.png",
+        "combined_plots/plip_hh/plip_k9_k9me3_all.png",
     params:
         peptide_resid=9,
         protein_labels=labels,
@@ -113,7 +113,7 @@ rule plot_plip_r17_cis:
         files_1=unmod_files,
         files_2=mod_files,
     output:
-        "combined_plots/plip/plip_r17_cis.png",
+        "combined_plots/plip_hh/plip_r17_cis.png",
     params:
         peptide_resid=17,
         protein_labels=labels,
@@ -129,7 +129,7 @@ rule plot_plip_r17_trans:
         files_1=unmod_files,
         files_2=mod_trans_files,
     output:
-        "combined_plots/plip/plip_r17_trans.png",
+        "combined_plots/plip_hh/plip_r17_trans.png",
     params:
         peptide_resid=17,
         protein_labels=labels,
@@ -146,7 +146,7 @@ rule plot_plip_r17_all:
         files_2=mod_files,
         files_3=mod_trans_files,
     output:
-        "combined_plots/plip/plip_r17_all.png",
+        "combined_plots/plip_hh/plip_r17_all.png",
     params:
         peptide_resid=17,
         protein_labels=labels,

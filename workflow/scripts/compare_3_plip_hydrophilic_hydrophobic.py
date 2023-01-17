@@ -70,9 +70,8 @@ resi_plot = sns.catplot(
     legend=False,
 )
 
-# each column is one protein, so loop over the protein labels,
-for i in range(len(labels)):
-    resi_plot.fig.get_axes()[i].legend(loc="upper left", frameon=False, fontsize=11)
+# legend on leftmost axes only
+resi_plot.fig.get_axes()[0].legend(loc="upper left", frameon=False, fontsize=11)
 
 ymin = int(getattr(snakemake.params, "ymin", 0))
 ymax = int(getattr(snakemake.params, "ymax", 1000))
