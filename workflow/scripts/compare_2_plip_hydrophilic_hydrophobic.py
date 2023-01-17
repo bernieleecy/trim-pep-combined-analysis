@@ -8,16 +8,22 @@ sns.set_palette("colorblind")
 plt.style.use(snakemake.config["mpl_style"])
 
 def make_df(file, label, start_res=1, end_res=20):
-    """
-    Reads an excel file containing the number of hydrophilic and hydrophobic
-    residues (split by residues)
-    - read_excel sheet_name will default to 0
+    """For making a DataFrame of PLIP hydrophilic and hydrophobic contacts
 
-    Processes the data for the specified residues.
-    - Supply the residue numbers as is (do not correct for python's
-      zero-indexing, the function deals with it)
-    """
+    Reads my PLIP hydrophilic and hydrophobic contacts breakdown and processes the data
+    for specified residues. Supply the residue numbers as is, do not correct for
+    python's zero indexing.
 
+    Args:
+        file (str): Path to excel sheet containing PLIP data.
+        label (str): Protein label.
+        start_res (int): First residue of the peptide. Defaults to 1.
+        end_res (int): Last residue of the peptide. Defaults to 20.
+
+    Returns:
+        DataFrame: DataFrame containing per-residue hydrophilic-hydrophobic contact
+        data.
+    """
     df = pd.read_excel(file, sheet_name=0, index_col=0)
     df.fillna(value=0, inplace=True)
     df.reset_index(inplace=True)
