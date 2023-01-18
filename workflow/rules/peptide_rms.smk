@@ -111,7 +111,11 @@ rule plot_pep_rmsf_k18_k18ac_cis_mut:
         "combined_plots/peptide/pep_backbone_rmsf_k18_k18ac_cis_mut.png",
     params:
         protein_labels=labels,
-        types=["Unmodified peptide", "Modified peptide (C)", "Modified peptide (C, N980A/N1039A)"],
+        types=[
+            "Unmodified peptide",
+            "Modified peptide (C)",
+            "Modified peptide (C, N to A)",
+        ],
         ymax=ymax_rmsf,
     script:
         "../scripts/compare_3_pep_rmsf.py"

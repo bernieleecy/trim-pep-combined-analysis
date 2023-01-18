@@ -15,11 +15,13 @@ plip_types = ["cis", "trans", "all"]
 # rmsf all refers to cis + trans K18Ac vs. unmod
 rmsf_types = ["cis", "trans", "all", "cis_mut"]
 
+
 # Load rules
 include: "rules/plip_hh.smk"
 include: "rules/plip_type_breakdown.smk"
 include: "rules/plip_hydrophobic.smk"
 include: "rules/peptide_rms.smk"
+include: "rules/yf_dists.smk"
 
 
 rule all:
@@ -51,4 +53,12 @@ rule all:
         pep_rmsf=expand(
             "combined_plots/peptide/pep_backbone_rmsf_k18_k18ac_{i}.png",
             i=rmsf_types,
+        ),
+        yf_dist_apo_unmod=expand(
+            "combined_plots/YF_dists/YF_{i}_k18ac_{k}_violins.png",
+            i=["apo", "unmod"],
+            k=["cis", "trans", "mut"],
+        ),
+        yf_dist_cis=expand(
+            "combined_plots/YF_dists/YF_k18ac_cis_{i}_violins.png", i=["trans"]
         ),
