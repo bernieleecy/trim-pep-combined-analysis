@@ -4,6 +4,8 @@ import pandas as pd
 configfile: "config/config.yaml"
 
 
+IDS = [str(i) for i in config["run_ids"]]
+
 samples = pd.read_csv("config/samples.csv", index_col=["protein", "folder"])
 PROTEINS = samples.index.unique(level="protein").tolist()
 FOLDERS = samples.index.unique(level="folder").tolist()
@@ -20,28 +22,27 @@ include: "rules/plip_hydrophobic.smk"
 
 rule all:
     input:
-        plip_k18_hh_plots=[
-            f"combined_plots/plip_hh/plip_k18_k18ac_{i}.png" for i in plip_types
-        ],
-        plip_k9_hh_plots=[
-            f"combined_plots/plip_hh/plip_k9_k9me3_{i}.png" for i in plip_types
-        ],
-        plip_r17_hh_plots=[
-            f"combined_plots/plip_hh/plip_r17_{i}.png" for i in plip_types
-        ],
-        plip_k18_breakdown_plots=[
-            f"combined_plots/plip_breakdown/plip_k18_k18ac_{i}_breakdown.png"
-            for i in plip_types
-        ],
-        plip_k9_breakdown_plots=[
-            f"combined_plots/plip_breakdown/plip_k9_k9me3_{i}_breakdown.png"
-            for i in plip_types
-        ],
-        plip_r17_breakdown_plots=[
-            f"combined_plots/plip_breakdown/plip_r17_{i}_breakdown.png"
-            for i in plip_types
-        ],
-        plip_k18_hydrophobic=[
-            f"combined_plots/plip_hydrophobic/plip_k18ac_{i}_key_hydrophobic.png"
-            for i in ["cis", "trans"]
-        ],
+        plip_k18_hh_plots=expand(
+            "combined_plots/plip_hh/plip_k18_k18ac_{i}.png", i=plip_types
+        ),
+        plip_k9_hh_plots=expand(
+            "combined_plots/plip_hh/plip_k9_k9me3_{i}.png", i=plip_types
+        ),
+        plip_r17_hh_plots=expand(
+            "combined_plots/plip_hh/plip_r17_{i}.png", i=plip_types
+        ),
+        plip_k18_breakdown_plots=expand(
+            "combined_plots/plip_breakdown/plip_k18_k18ac_{i}_breakdown.png",
+            i=plip_types,
+        ),
+        plip_k9_breakdown_plots=expand(
+            "combined_plots/plip_breakdown/plip_k9_k9me3_{i}_breakdown.png",
+            i=plip_types,
+        ),
+        plip_r17_breakdown_plots=expand(
+            "combined_plots/plip_breakdown/plip_r17_{i}_breakdown.png", i=plip_types
+        ),
+        plip_k18_hydrophobic=expand(
+            "combined_plots/plip_hydrophobic/plip_k18ac_{i}_key_hydrophobic.png",
+            i=["cis", "trans"],
+        ),

@@ -1,13 +1,14 @@
-unmod_files = [f"data/{protein}/unmod_pep/plip/plip_data.xlsx" for protein in PROTEINS]
-mod_files = [f"data/{protein}/mod_pep/plip/plip_data.xlsx" for protein in PROTEINS]
-mod_trans_files = [
-    f"data/{protein}/mod_pep_trans/plip/plip_data.xlsx" for protein in PROTEINS
-]
+unmod_files = expand("data/{protein}/unmod_pep/plip/plip_data.xlsx", protein=PROTEINS)
+mod_files = expand("data/{protein}/mod_pep/plip/plip_data.xlsx", protein=PROTEINS)
+mod_trans_files = expand(
+    "data/{protein}/mod_pep_trans/plip/plip_data.xlsx", protein=PROTEINS
+)
 
 labels = ["TRIM24", "TRIM33\u03b1", "TRIM33\u03b2"]
 ymax_k18 = 1700
 ymax_k9 = 1200
 ymax_r17 = 900
+
 
 rule plot_plip_k18_k18ac_cis:
     input:
