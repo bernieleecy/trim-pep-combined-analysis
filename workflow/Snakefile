@@ -22,6 +22,7 @@ include: "rules/plip_type_breakdown.smk"
 include: "rules/plip_hydrophobic.smk"
 include: "rules/peptide_rms.smk"
 include: "rules/yf_dists.smk"
+include: "rules/vmd_hbonds.smk"
 
 
 rule all:
@@ -61,4 +62,9 @@ rule all:
         ),
         yf_dist_cis=expand(
             "combined_plots/YF_dists/YF_k18ac_cis_{i}_violins.png", i=["trans"]
+        ),
+        vmd_bonds=expand(
+            "combined_plots/vmd_hbonds/k18ac_{i}_{k}_heatmap.png",
+            i=["cis", "trans"],
+            k=["k18ac", "r17"],
         ),

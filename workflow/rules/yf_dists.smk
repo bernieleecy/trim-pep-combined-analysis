@@ -1,3 +1,4 @@
+# A bit like spaghetti code so I can give everything different labels
 # T24 files
 t24_apo_f979_file = "data/t24/apo/f979_dists/data/f979_y935.xvg"
 t24_unmod_f979_file = "data/t24/unmod_pep/f979_dists/data/f979_y935.xvg"
