@@ -1,1 +1,8 @@
+run_ids :
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+
 mpl_style : config/t33a_small_mol_plotstyle.mplstyle

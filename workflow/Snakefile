@@ -12,12 +12,14 @@ FOLDERS = samples.index.unique(level="folder").tolist()
 
 # cis K18Ac, trans K18Ac and cis + trans K18Ac compared against unmod
 plip_types = ["cis", "trans", "all"]
-
+# rmsf all refers to cis + trans K18Ac vs. unmod
+rmsf_types = ["cis", "trans", "all", "cis_mut"]
 
 # Load rules
 include: "rules/plip_hh.smk"
 include: "rules/plip_type_breakdown.smk"
 include: "rules/plip_hydrophobic.smk"
+include: "rules/peptide_rms.smk"
 
 
 rule all:
@@ -45,4 +47,8 @@ rule all:
         plip_k18_hydrophobic=expand(
             "combined_plots/plip_hydrophobic/plip_k18ac_{i}_key_hydrophobic.png",
             i=["cis", "trans"],
+        ),
+        pep_rmsf=expand(
+            "combined_plots/peptide/pep_backbone_rmsf_k18_k18ac_{i}.png",
+            i=rmsf_types,
         ),
