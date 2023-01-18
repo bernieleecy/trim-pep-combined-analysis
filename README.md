@@ -44,3 +44,9 @@ snakemake -call
 ```
 
 Unlike the basic analysis workflows, I will backup the `.png` files generated to github.
+
+# A note on VMD work
+
+For the VMD hydrogen bonds, it was faster to manually select the hydrogen bonds of interest, then use the workflow to plot the heatmaps.
+This means that the csv files in `data/vmd_manual_curate` will need to be manually updated if I change the VMD hydrogen bonds code in the earlier analysis workflows.
+However, it is highly unlikely that this will happen, so the work here should be final.
