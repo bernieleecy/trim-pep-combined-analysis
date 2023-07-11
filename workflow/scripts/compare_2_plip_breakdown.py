@@ -74,6 +74,7 @@ resi_plot = sns.catplot(
     height=4.0,
     aspect=0.9,
     legend=False,
+    facet_kws=dict(despine=False),
 )
 
 # legend on leftmost axes only
@@ -88,7 +89,7 @@ resi_plot.fig.get_axes()[0].set(ylim=(ymin, ymax))
 
 (
     resi_plot.set_axis_labels("", "Count")
-    .set_titles("{col_name}")
+    .set_titles("{col_name}", pad=8)
     .set_xticklabels(resi_types)
 )
 

@@ -36,7 +36,7 @@ t33b_n1039a_rmsf_files = expand(
 )
 
 labels = ["TRIM24", "TRIM33\u03b1", "TRIM33\u03b2"]
-ymax_rmsf = 6
+ymax_rmsf = 5
 
 
 rule plot_pep_rmsf_k18_k18ac_cis:

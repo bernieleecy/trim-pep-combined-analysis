@@ -66,5 +66,4 @@ ax.set(
 )
 ax.legend(frameon=False, loc="upper left")
 
-sns.despine()
 fig.savefig(snakemake.output[0], dpi=600)

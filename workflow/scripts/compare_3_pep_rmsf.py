@@ -104,8 +104,8 @@ for i, (set_1, set_2, set_3) in enumerate(zip(files_1, files_2, files_3)):
             xticks=resi,
             xticklabels=resi,
             ylim=(ymin, ymax),
-            title=labels[i],
         )
+        axes[i].set_title(labels[i], pad=8)
         axes[i].tick_params(axis="x", which="major", labelsize=10)
         axes[i].legend(frameon=False, loc="upper left")
     else:
@@ -113,9 +113,8 @@ for i, (set_1, set_2, set_3) in enumerate(zip(files_1, files_2, files_3)):
             xlabel="Peptide residue number",
             xticks=resi,
             xticklabels=resi,
-            title=labels[i],
         )
+        axes[i].set_title(labels[i], pad=8)
         axes[i].tick_params(axis="x", which="major", labelsize=10)
 
-sns.despine()
 fig.savefig(snakemake.output[0], dpi=600)
