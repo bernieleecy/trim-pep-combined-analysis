@@ -57,13 +57,15 @@ ylabel = getattr(snakemake.params, "ylabel", "Distance (Å)")
 ymin = getattr(snakemake.params, "ymin", 3)
 ymax = getattr(snakemake.params, "ymax", 15)
 
-fig, ax = plt.subplots(figsize=(6, 4), constrained_layout=True)
+# change size for thesis
+fig, ax = plt.subplots(figsize=(4, 3.25), constrained_layout=True)
 sns.violinplot(x="Protein", y="value", hue="variable", data=all_df, split=True, cut=0)
 ax.set(
     xlabel=None,
     ylabel=ylabel,
     ylim=(ymin, ymax),
 )
-ax.legend(frameon=False, loc="upper left")
+
+ax.legend(loc="upper left", facecolor="white", framealpha=0.9)
 
 fig.savefig(snakemake.output[0], dpi=600)

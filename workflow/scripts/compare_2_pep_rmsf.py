@@ -49,7 +49,7 @@ ymax = getattr(snakemake.params, "ymax", 5)
 # peptide residues hard coded in
 resi = np.arange(1, 21)
 
-fig, axes = plt.subplots(1, 3, figsize=(15, 4.5), constrained_layout=True, sharey=True)
+fig, axes = plt.subplots(1, 3, figsize=(12, 4), constrained_layout=True, sharey=True)
 
 for i, (set_1, set_2) in enumerate(zip(files_1, files_2)):
     # all data for the first set, excludes C terminal cap
@@ -82,12 +82,13 @@ for i, (set_1, set_2) in enumerate(zip(files_1, files_2)):
         label=resi_types[1],
     )
 
+    xticks = [1,5,10,15,20]
     if i == 0:
         axes[i].set(
             xlabel="Peptide residue number",
             ylabel="RMSF (Å)",
-            xticks=resi,
-            xticklabels=resi,
+            xticks=xticks,
+            xticklabels=xticks,
             ylim=(ymin, ymax),
         )
         axes[i].set_title(labels[i], pad=8)
@@ -96,8 +97,8 @@ for i, (set_1, set_2) in enumerate(zip(files_1, files_2)):
     else:
         axes[i].set(
             xlabel="Peptide residue number",
-            xticks=resi,
-            xticklabels=resi,
+            xticks=xticks,
+            xticklabels=xticks,
         )
         axes[i].set_title(labels[i], pad=8)
         axes[i].tick_params(axis="x", which="major", labelsize=10)

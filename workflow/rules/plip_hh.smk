@@ -118,7 +118,7 @@ rule plot_plip_r17_cis:
     params:
         peptide_resid=17,
         protein_labels=labels,
-        types=["Unmod", "Mod"],
+        types=["K18", "K18Ac"],
         ymax=ymax_r17,
     script:
         "../scripts/compare_2_plip_hydrophilic_hydrophobic.py"
@@ -133,7 +133,7 @@ rule plot_plip_r17_trans:
     params:
         peptide_resid=17,
         protein_labels=labels,
-        types=["Unmod", "Mod"],
+        types=["K18", "K18Ac"],
         ymax=ymax_r17,
     script:
         "../scripts/compare_2_plip_hydrophilic_hydrophobic.py"
@@ -149,7 +149,7 @@ rule plot_plip_r17_all:
     params:
         peptide_resid=17,
         protein_labels=labels,
-        types=["Unmod", "Mod (C)", "Mod (T)"],
+        types=["K18", "K18Ac (C)", "K18Ac (T)"],
         ymax=ymax_r17,
     script:
         "../scripts/compare_3_plip_hydrophilic_hydrophobic.py"

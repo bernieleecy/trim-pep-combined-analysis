@@ -72,14 +72,14 @@ resi_plot = sns.catplot(
     hue_order=hue_order,
     kind="bar",
     ci=None,
-    height=4.0,
+    height=3.5,
     aspect=0.9,
     legend=False,
     facet_kws=dict(despine=False),
 )
 
 # legend on leftmost axes only
-leg_labels = ["Hydrogen bond", "Salt bridge", "Cation\u2013pi", "Hydrophobic"]
+leg_labels = ["Hydrogen bond", "Salt bridge", "Cation\u2013\u03c0", "Hydrophobic"]
 resi_plot.fig.get_axes()[0].legend(
     loc="upper left", frameon=False, fontsize=11, labels=leg_labels
 )

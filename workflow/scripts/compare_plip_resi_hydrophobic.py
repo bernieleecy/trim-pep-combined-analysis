@@ -59,21 +59,26 @@ for i, (file, resid) in enumerate(zip(files, resids)):
     sliced_df["Set"] = pd.factorize(sliced_df["Protein_ID"])[0]
     all_df = pd.concat([all_df, sliced_df])
 
-fig, ax = plt.subplots(figsize=(7, 4), constrained_layout=True)
+# changed size for thesis
+fig, ax = plt.subplots(figsize=(5, 3.5), constrained_layout=True)
 sns.barplot(data=all_df, x="Set", y="size", hue="Protein", ax=ax)
 
 ymin = int(getattr(snakemake.params, "ymin", 0))
 ymax = int(getattr(snakemake.params, "ymax", 1000))
+# change labels for thesis
+xtick_labels = snakemake.params.t33b_labels
+"""
 xtick_labels = [
-    f"{i}/{k}/{j}"
+    f"{i}/{j}/{k}"
     for (i, j, k) in zip(
         snakemake.params.t24_labels,
         snakemake.params.t33a_labels,
         snakemake.params.t33b_labels,
     )
 ]
+"""
 ax.set(xlabel="Protein residue", ylabel="Count", ylim=(ymin, ymax))
-ax.set_xticklabels(xtick_labels, fontsize=10)
-ax.legend(frameon=False)
+ax.set_xticklabels(xtick_labels)
+ax.legend(frameon=False, loc="upper left")
 
 fig.savefig(snakemake.output[0], dpi=600)

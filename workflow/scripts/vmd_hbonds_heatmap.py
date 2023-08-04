@@ -13,16 +13,19 @@ df.columns = labels
 
 fig_height = df.shape[0] * 1.25
 
-if fig_height <= 10:
+if fig_height <= 4:
     fig, ax = plt.subplots(figsize=(5,fig_height), constrained_layout=True)
 else:
-    fig, ax = plt.subplots(figsize=(5,10), constrained_layout=True)
+    fig, ax = plt.subplots(figsize=(5,4), constrained_layout=True)
 
 ax = sns.heatmap(df, vmin=0, vmax=100,
                  cmap='crest', annot=True, linewidths=0.2,
                  fmt=".1f",
                  cbar_kws={'label': 'Occupancy (%)'},
                  annot_kws={"size": 16})
+cbar = ax.collections[0].colorbar
+cbar.set_label('Occupancy (%)', fontsize=14)
+
 ax.set(ylabel='')
 ax.tick_params(axis='y', rotation=0)
 ax.xaxis.set_ticks_position('top')

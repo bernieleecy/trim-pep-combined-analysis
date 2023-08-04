@@ -50,7 +50,7 @@ ymax = getattr(snakemake.params, "ymax", 5)
 # peptide residues hard coded in
 resi = np.arange(1, 21)
 
-fig, axes = plt.subplots(1, 3, figsize=(15, 4.5), constrained_layout=True, sharey=True)
+fig, axes = plt.subplots(1, 3, figsize=(12, 4), constrained_layout=True, sharey=True)
 
 for i, (set_1, set_2, set_3) in enumerate(zip(files_1, files_2, files_3)):
     # all data for the first set, excludes C terminal cap
@@ -85,7 +85,7 @@ for i, (set_1, set_2, set_3) in enumerate(zip(files_1, files_2, files_3)):
         alpha=0.7,
         marker="o",
         capsize=3,
-        label=resi_types[1],
+        label=resi_types[1]
     )
     axes[i].errorbar(
         resi,
@@ -97,24 +97,24 @@ for i, (set_1, set_2, set_3) in enumerate(zip(files_1, files_2, files_3)):
         label=resi_types[2],
     )
 
+    # updated for thesis
+    xticks = [1,5,10,15,20]
     if i == 0:
         axes[i].set(
-            xlabel="Peptide residue number",
-            ylabel="RMSF (Å)",
-            xticks=resi,
-            xticklabels=resi,
+            xticks=xticks,
+            xticklabels=xticks,
             ylim=(ymin, ymax),
         )
-        axes[i].set_title(labels[i], pad=8)
-        axes[i].tick_params(axis="x", which="major", labelsize=10)
-        axes[i].legend(frameon=False, loc="upper left")
+        axes[i].set_xlabel("Peptide residue number", fontsize=14)
+        axes[i].set_ylabel("RMSF (Å)", fontsize=14)
+        axes[i].set_title(labels[i], pad=8, fontsize=16)
+        axes[i].legend(frameon=False, loc="upper left", fontsize=13)
     else:
         axes[i].set(
-            xlabel="Peptide residue number",
-            xticks=resi,
-            xticklabels=resi,
+            xticks=xticks,
+            xticklabels=xticks,
         )
-        axes[i].set_title(labels[i], pad=8)
-        axes[i].tick_params(axis="x", which="major", labelsize=10)
+        axes[i].set_xlabel("Peptide residue number", fontsize=14)
+        axes[i].set_title(labels[i], pad=8, fontsize=16)
 
 fig.savefig(snakemake.output[0], dpi=600)

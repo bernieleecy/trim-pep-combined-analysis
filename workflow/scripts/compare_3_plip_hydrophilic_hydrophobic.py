@@ -72,7 +72,7 @@ resi_plot = sns.catplot(
     hue_order=["Hydrophilic", "Hydrophobic"],
     kind="bar",
     palette=["lightsteelblue", "thistle"],
-    height=4.0,
+    height=3.5,
     aspect=0.9,
     legend=False,
     facet_kws=dict(despine=False),

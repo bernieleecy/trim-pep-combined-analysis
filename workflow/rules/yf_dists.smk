@@ -20,7 +20,7 @@ t33b_n1039a_f1038_file = "data/t33b/n1039a/f1038_dists/data/f1038_y993.xvg"
 
 labels = ["TRIM24", "TRIM33\u03b1", "TRIM33\u03b2"]
 ymin_yf = 3.5
-ymax_yf = 12
+ymax_yf = 10
 
 
 rule plot_yf_apo_k18ac_cis:
