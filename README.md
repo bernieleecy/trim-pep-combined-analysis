@@ -5,6 +5,9 @@ Most often used for collating T24, T33A and T33B data for the thesis.
 
 Here, I still use `snake_env`, similar to other workflows.
 
+Unlike the other workflows in the thesis, this repo also contains images!
+This is one of the few repos that is small enough to be fully uploaded onto Github, even with figures included. 
+
 ## Organisation
 
 A little bit different, as symlinks are now made to the results folders in the T24, T33A and T33B pep analysis workflows.
