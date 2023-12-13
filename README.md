@@ -1,7 +1,7 @@
 # Snakemake workflow: trim-pep-combined-analysis
 
 A snakemake workflow for analysing combinations of TRIM–peptide simulations.
-Most often used for collating T24, T33A and T33B data.
+Most often used for collating T24, T33A and T33B data for the thesis. 
 
 Here, I still use `snake_env`, similar to other workflows.
 
@@ -49,4 +49,3 @@ Unlike the basic analysis workflows, I will backup the `.png` files generated to
 
 For the VMD hydrogen bonds, it was faster to manually select the hydrogen bonds of interest, then use the workflow to plot the heatmaps.
 This means that the csv files in `data/vmd_manual_curate` will need to be manually updated if I change the VMD hydrogen bonds code in the earlier analysis workflows.
-However, it is highly unlikely that this will happen, so the work here should be final.
